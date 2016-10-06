@@ -1,0 +1,15 @@
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+  name: "jenkins-jos-build" 
+spec:
+    runPolicy: "Serial"
+    source:
+        type: "Git"
+        git: 
+        uri: "https://github.com/jr00n/jenkins-jos.git"
+    strategy:
+        type: "Docker"
+        dockerStrategy:
+            dockerfilePath: .
+
