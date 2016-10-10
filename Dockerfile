@@ -2,7 +2,7 @@ FROM jenkins:2.7.4
 MAINTAINER jr00n 
 USER root
 RUN apt-get update \
-      && apt-get install -y sudo supervisor \
+      && apt-get install -y sudo \
       && rm -rf /var/lib/apt/lists/*
 
 #RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
@@ -50,20 +50,7 @@ ENV JAVA_OPTS="-Xmx8192m -Djenkins.install.runSetupWizard=false"
 
 #Add reference config to disable security
 ADD JENKINS_HOME /usr/share/jenkins/ref
-RUN /usr/local/bin/install-plugins.sh workflow-aggregator:2.2 docker-workflow:1.7 copyartifact:1.38 greenballs:1.15 git:2.5.3 
+RUN /usr/local/bin/install-plugins.sh workflow-aggregator:2.2 docker-workflow:1.7 greenballs:1.15 git:2.5.3 openshift-pipeline:1.0.22
 
 ENV JENKINS_DOWNLOAD=http://updates.jenkins-ci.org/experimental/latest/
 RUN /usr/local/bin/install-plugins.sh blueocean
-
-# supervisord
-USER root
-
-# Create log folder for supervisor and jenkins
-RUN mkdir -p /var/log/supervisor
-RUN mkdir -p /var/log/jenkins
-
-# Copy the supervisor.conf file into Docker
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-# Start supervisord when running the container
-CMD /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
