@@ -1,5 +1,5 @@
 FROM jenkins:2.7.3
- 
+MAINTAINER jr00n 
 USER root
 RUN apt-get update \
       && apt-get install -y sudo supervisor \
