@@ -50,7 +50,8 @@ ENV JAVA_OPTS="-Xmx8192m -Djenkins.install.runSetupWizard=false"
 
 #Add reference config to disable security
 ADD JENKINS_HOME /usr/share/jenkins/ref
-RUN /usr/local/bin/install-plugins.sh workflow-aggregator:2.2 docker-workflow:1.7 greenballs:1.15 git:2.5.3 openshift-pipeline:1.0.22
 
-ENV JENKINS_DOWNLOAD=http://updates.jenkins-ci.org/experimental/latest/
-RUN /usr/local/bin/install-plugins.sh blueocean
+#Add plugins
+#RUN /usr/local/bin/install-plugins.sh workflow-aggregator:2.2 docker-workflow:1.7 greenballs:1.15 git:2.5.3 openshift-pipeline:1.0.22
+RUN /usr/local/bin/install-plugins.sh workflow-aggregator:2.2 ssh-slaves:1.11 htmlpublisher:1.11 windows-slaves:1.2 email-ext:2.52 ldap:1.13 external-monitor-job:1.6 jobConfigHistory:2.15 robot:1.6.4 hp-application-automation-tools-plugin:4.5.0 vsphere-cloud:2.14 script-security:1.24 changelog-history:1.6 disk-usage:0.28 branch-api:1.11 git:3.0.0 greenballs:1.15 credentials-binding:1.9 lastfailureversioncolumn:1.1 lastsuccessversioncolumn:1.1 ldapemail:0.8 maven-info:0.2.0 monitoring:1.62.0 next-build-number:1.4 versionnumber:1.8.1
+
