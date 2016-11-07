@@ -53,5 +53,9 @@ ADD JENKINS_HOME /usr/share/jenkins/ref
 
 #Add plugins
 #RUN /usr/local/bin/install-plugins.sh workflow-aggregator:2.2 docker-workflow:1.7 greenballs:1.15 git:2.5.3 openshift-pipeline:1.0.22
-RUN /usr/local/bin/install-plugins.sh workflow-aggregator:2.2 ssh-slaves:1.11 htmlpublisher:1.11 windows-slaves:1.2 email-ext:2.52 ldap:1.13 external-monitor-job:1.6 jobConfigHistory:2.15 robot:1.6.4 hp-application-automation-tools-plugin:4.5.0 vsphere-cloud:2.14 script-security:1.24 changelog-history:1.6 disk-usage:0.28 branch-api:1.11 git:3.0.0 greenballs:1.15 credentials-binding:1.9 lastfailureversioncolumn:1.1 lastsuccessversioncolumn:1.1 ldapemail:0.8 maven-info:0.2.0 monitoring:1.62.0 next-build-number:1.4 versionnumber:1.8.1
+RUN /usr/local/bin/install-plugins.sh workflow-aggregator:2.2 ssh-slaves:1.11 htmlpublisher:1.11 windows-slaves:1.2 email-ext:2.52 ldap:1.13 
+RUN /usr/local/bin/install-plugins.sh external-monitor-job:1.6 jobConfigHistory:2.15 robot:1.6.4 hp-application-automation-tools-plugin:4.5.0 
+RUN /usr/local/bin/install-plugins.sh vsphere-cloud:2.14 script-security:1.24 changelog-history:1.6 disk-usage:0.28 branch-api:1.11 git:3.0.0 
+RUN /usr/local/bin/install-plugins.sh greenballs:1.15 credentials-binding:1.9 lastfailureversioncolumn:1.1 lastsuccessversioncolumn:1.1 ldapemail:0.8 
+RUN /usr/local/bin/install-plugins.sh maven-info:0.2.0 monitoring:1.62.0 next-build-number:1.4 versionnumber:1.8.1
 
