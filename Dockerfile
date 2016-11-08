@@ -1,4 +1,4 @@
-FROM jenkins:2.7.4
+FROM jenkins:2.19.1
 MAINTAINER jr00n 
 USER root
 RUN apt-get update \
@@ -24,23 +24,6 @@ RUN ln -s /opt/maven/bin/mvn /usr/local/bin
 RUN rm -f /tmp/apache-magen-3.3.9-bin.tar.gz
 RUN chown -R jenkins:jenkins /opt/maven
 
-
-# Install docker-engine
-# According to Petazzoni's article:
-# ---------------------------------
-# "Former versions of this post advised to bind-mount the docker binary from
-# the host to the container. This is not reliable anymore, because the Docker
-# Engine is no longer distributed as (almost) static libraries."
-ARG docker_version=1.11.2
-RUN curl -sSL https://get.docker.com/ | sh && \
-    apt-get purge -y docker-engine && \
-    apt-get install docker-engine=${docker_version}-0~jessie
-
-# Make sure jenkins user has docker privileges
-RUN usermod -aG docker jenkins
-# Make sure jenkins user may use docker.sock 
-RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
-
 # remove download archive files
 RUN apt-get clean
 
@@ -52,7 +35,6 @@ ENV JAVA_OPTS="-Xmx8192m -Djenkins.install.runSetupWizard=false"
 ADD JENKINS_HOME /usr/share/jenkins/ref
 
 #Add plugins
-#RUN /usr/local/bin/install-plugins.sh workflow-aggregator:2.2 docker-workflow:1.7 greenballs:1.15 git:2.5.3 openshift-pipeline:1.0.22
 RUN /usr/local/bin/install-plugins.sh workflow-aggregator:2.2 ssh-slaves:1.11 htmlpublisher:1.11 windows-slaves:1.2 email-ext:2.52 ldap:1.13 
 RUN /usr/local/bin/install-plugins.sh external-monitor-job:1.6 jobConfigHistory:2.15 robot:1.6.4 hp-application-automation-tools-plugin:4.5.0 
 RUN /usr/local/bin/install-plugins.sh vsphere-cloud:2.14 script-security:1.24 changelog-history:1.6 disk-usage:0.28 branch-api:1.11 git:3.0.0 
