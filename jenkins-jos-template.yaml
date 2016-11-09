@@ -9,6 +9,7 @@ metadata:
   annotations:
     description: Maakt een CI/CD omgeving met Jenkins
     iconClass: icon-jenkins
+  name: jenkins-jos
 objects:
 # Jenkins
 - apiVersion: v1
